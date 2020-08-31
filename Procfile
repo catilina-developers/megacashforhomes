@@ -1,0 +1,1 @@
+web: gunicorn megacashforhomes.wsgi --log-file -

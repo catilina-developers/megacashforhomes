@@ -1,0 +1,70 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  {% include 'acc/head-section.html' %}
+  <body>
+
+	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="/">Mega Cash for Homes</a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+	          <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
+	          <li class="nav-item"><a href="/about/" class="nav-link">About</a></li>
+	          <li class="nav-item"><a href="/sell/" class="nav-link">Sell Now</a></li>
+	          <li class="nav-item"><a href="/meet/" class="nav-link">Meet Us</a></li>
+	          <li class="nav-item"><a href="/blog/" class="nav-link">Blog</a></li>
+	          <li class="nav-item"><a href="/contact/" class="nav-link">Contact</a></li>
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+    
+
+    <div class="hero-wrap ftco-degree-bg" style="background-image: url('{% static 'images/bgg.jpg' %}');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text justify-content-center align-items-center">
+          <div class="col-lg-8 col-md-6 ftco-animate d-flex align-items-end">
+          	<div class="text text-center">
+	            <h1 class="mb-4"style="weight:bold;">The Simplest <br>Way to Sell Property</h1>
+	            <p style="font-size: 18px; font-weight: bold;"  >The house you looked at today and wanted to think about until tomorrow may be the same house someone looked at yesterday and will buy today.</p>
+	            	<div class="container btn-container">
+						<div class="col-lg-12 col-md-12">
+						<a href="/meet/"><button class="form-btn btn3" >Meet Us!</button></a>
+						<a href="/sell/"><button class="form-btn btn4">Sell Now</button></a>
+						</div>
+					</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mouse">
+				<a href="#" class="mouse-icon">
+					<div class="mouse-wheel"><span class="ion-ios-arrow-round-down"></span></div>
+				</a>
+			</div>
+    </div>
+
+    
+
+    
+
+    {% include "acc/offer-block.html" %}
+    {% include "acc/people-block.html" %}
+
+  {% include 'acc/footer-section.html' %}
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+  
+  {% include 'acc/script-section.html' %}
+  </body>
+</html>

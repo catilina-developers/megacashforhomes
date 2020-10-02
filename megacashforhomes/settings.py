@@ -25,7 +25,7 @@ SECRET_KEY = '8omho1cv1^zdlx8$*v5hn3))(ub(l4bm!rw_n3wzhps@!#8sj#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['megacashforhomes.herokuapp.com', '127.0.0.1', 'megacashforhomes.com', 'megacash4homes.com']
+ALLOWED_HOSTS = ['megacashforhomes.herokuapp.com', '127.0.0.1', 'megacashforhomes.com', 'megacash4homes.com','www.megacashforhomes.com']
 
 
 # Application definition

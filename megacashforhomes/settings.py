@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '8omho1cv1^zdlx8$*v5hn3))(ub(l4bm!rw_n3wzhps@!#8sj#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['megacashforhomes.herokuapp.com', '127.0.0.1', 'megacashforhomes.com', 'megacash4homes.com','www.megacashforhomes.com']
 
@@ -127,7 +127,7 @@ STATICFILES_DIRS = [
 ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST_USER = "megacashforhomes@gmail.com" 
+EMAIL_HOST_USER = "megacashforhomes@gmail.com"
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True

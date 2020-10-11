@@ -105,7 +105,7 @@ def pdf(request):
         img_path = "http://127.0.0.1:8000/static/images/loc.jpg"
         cust_phone = request.POST['phone']
         admin_email = "catilinadevelopers@outlook.com"
-        sender = "megacashforhomes@gmail.com"
+        sender = "catilinadevelopers@gmail.com"
         
 
         #address validation goes here
@@ -221,7 +221,7 @@ def contact(request):
         message = request.POST["message"]
         admin_email = "catilinadevelopers@outlook.com"
         mail_msg = "You have a query by :"+name+"\nEmail id: "+email+"\nSubject: "+subject+"\nPerson wants to ask following: \n"+message+""
-        sender = "megacashforhomes@gmail.com"
+        sender = "catilinadevelopers@gmail.com"
         send_mail(
             "You have a query",
             mail_msg,
@@ -241,7 +241,7 @@ def meet(request):
         location = request.POST['property_addr']
         message = "Meeting request is Made by " + name + "\nCustomer email address is : " + email + "\nseller's property location:" + location + "\nCustomers Phone number: "+ phone +""
         admin_email = "catilinadevelopers@outlook.com"
-        sender = "megacashforhomes@gmail.com"
+        sender = "catilinadevelopers@gmail.com"
         send_mail(
             "You have a meet request",
             message,

@@ -115,7 +115,7 @@ def pdf(request):
 
         headers = {
             'x-rapidapi-host': "realtor.p.rapidapi.com",
-            'x-rapidapi-key': "4c93f0d8ecmshd6f225dfbcc7675p1d95cfjsn33f2a1d1b952"
+            'x-rapidapi-key': "32d2e2412fmsh449e65ab8f5222ap1d7e26jsn77a64b7330e42"
             }
 
         add_res = rq.request("GET", url, headers=headers, params=querystring)
@@ -137,7 +137,7 @@ def pdf(request):
 
         headers = {
             'x-rapidapi-host': "zillow-com.p.rapidapi.com",
-            'x-rapidapi-key': "4c93f0d8ecmshd6f225dfbcc7675p1d95cfjsn33f2a1d1b952" #here will be your key
+            'x-rapidapi-key': "32d2e2412fmsh449e65ab8f5222ap1d7e26jsn77a64b7330e4" #here will be your key
             }
 
         response = rq.request("GET", url, headers=headers, params=querystring)

@@ -30,11 +30,12 @@ def send_not_address(user_mail, admin_email, sender, cust_name, cust_phone, loca
         sender,
         [user_mail]
     )
+    admin_email = admin_email.split(",")
     send_mail(
         "Address not found",
         admin_msg,
         sender,
-        [admin_email]
+        admin_email
     )
 def send_not_zestimate(user_mail, admin_email, sender, cust_name, cust_phone, location, price):
     cust_msg = "our team will contact you sortly!"
@@ -52,11 +53,12 @@ def send_not_zestimate(user_mail, admin_email, sender, cust_name, cust_phone, lo
         sender,
         [user_mail]
     )
+    admin_email = admin_email.split(",")
     send_mail(
         "zestimate not found",
         admin_msg,
         sender,
-        [admin_email]
+        admin_email
     )
 def send_on_success(user_mail, admin_email, sender, cust_name, cust_phone, location, price, result):
     mail_subj = "Congratulation for join with us" #success mail subject
@@ -79,11 +81,12 @@ def send_on_success(user_mail, admin_email, sender, cust_name, cust_phone, locat
     email.content_subtype="html"
     email.attach("Agreement.pdf", result.getvalue(), "application/pdf")
     email.send()
+    admin_email = admin_email.split(",")
     email = EmailMessage(
         "New User Agreement",
         admin_msg,
         sender,
-        [admin_email],
+        admin_email,
         reply_to=['no-reply@gmail.com'],
     )
     email.attach("Agreement.pdf", result.getvalue(), "application/pdf")
@@ -104,8 +107,8 @@ def pdf(request):
         cust_email = request.POST['cust_email']
         img_path = "http://127.0.0.1:8000/static/images/loc.jpg"
         cust_phone = request.POST['phone']
-        admin_email = "agentnate@gmail.com" #"catilinadevelopers@outlook.com" #"agentnate@gmail.com"
-        sender = "Megacashforhomes@gmail.com" #"catilinadevelopers@gmail.com" #"Megacashforhomes@gmail.com"
+        admin_email = "agentnate@gmail.com, dsifers@gmail.com" 
+        sender = "Megacashforhomes@gmail.com" 
         
 
         #address validation goes here
@@ -117,9 +120,6 @@ def pdf(request):
             'x-rapidapi-host': "realtor.p.rapidapi.com",
             'x-rapidapi-key': "4c93f0d8ecmshd6f225dfbcc7675p1d95cfjsn33f2a1d1b952"
             }
-
-        # add_res = rq.request("GET", url, headers=headers, params=querystring)
-        # address = json.loads(add_res.text)
         addr = ''
         citystatezip = ''
         #end address validation
@@ -127,38 +127,18 @@ def pdf(request):
             add_res = rq.request("GET", url, headers=headers, params=querystring)
             address = json.loads(add_res.text)
             addr = address["autocomplete"][0]["mpr_id"]
-            # address = address["autocomplete"][0]
-            # addr = address["line"]
-            # citystatezip = address["city"]+" "+address["state_code"]+" "+address["postal_code"]
         except:
             send_not_address(cust_email, admin_email, sender, cust_name, cust_phone, location, price)
             return render(request, "acc/sell.html", {"address_not_found":True})
-
-        # url = "https://realtor.p.rapidapi.com/properties/v2/detail"
         url = "https://realtor.p.rapidapi.com/properties/v2/detail"
         querystring = {"property_id":addr}
-        # querystring = {"address":addr,"citystatezip":citystatezip}
-
-    #     headers = {
-    #         "x-rapidapi-host": "zillow6.p.rapidapi.com",
-    # "x-rapidapi-key": "e9faf22191mshe103867cdad6a47p1ee164jsn0d2089f327dc",
-    #         # 'x-rapidapi-host': "zillow-com.p.rapidapi.com",
-    #         # 'x-rapidapi-key': "e9faf22191mshe103867cdad6a47p1ee164jsn0d2089f327dc" #here will be your key
-    #         }
-
-        #response = rq.request("GET", url, headers=headers, params=querystring)
-        #print(response.text);
-        #data = json.loads(response.text)
-        # data = data[0]
-        # data = data["properties"][0]
         zestimate = None
         try:
             response = rq.request("GET", url, headers=headers, params=querystring)
             data = json.loads(response.text)
             data = data["properties"][0]
             zestimate = "{:,}".format(math.ceil(int(data["price"])*.6))
-            # zestimate = "{:,}".format(math.ceil(int(data["zestimate"]["amount"]["value"])*.6))
-            zestimate = "$"+str(zestimate) #+" "+data["zestimate"]["amount"]["currency"]
+            zestimate = "$"+str(zestimate)
         except:
             send_not_zestimate(cust_email, admin_email, sender, cust_name, cust_phone, location, price)
             return render(request, "acc/sell.html", {"address_not_found":True})
@@ -230,14 +210,15 @@ def contact(request):
         email = request.POST['cust_mail']
         subject = request.POST["subject"]
         message = request.POST["message"]
-        admin_email = "agentnate@gmail.com"
+        admin_email = "agentnate@gmail.com, dsifers@gmail.com" 
         mail_msg = "You have a query by :"+name+"\nEmail id: "+email+"\nSubject: "+subject+"\nPerson wants to ask following: \n"+message+""
         sender = "Megacashforhomes@gmail.com"
+        admin_email = admin_email.split(',')
         send_mail(
             "You have a query",
             mail_msg,
             sender,
-            [admin_email]
+            admin_email
         )
         return render(request, 'acc/index.html')
     else:
@@ -251,13 +232,15 @@ def meet(request):
         email = request.POST['cust_email']
         location = request.POST['property_addr']
         message = "Meeting request is Made by " + name + "\nCustomer email address is : " + email + "\nseller's property location:" + location + "\nCustomers Phone number: "+ phone +""
-        admin_email = "agentnate@gmail.com"
+        admin_email = "agentnate@gmail.com, dsifers@gmail.com"
         sender = "Megacashforhomes@gmail.com"
+        admin_email = admin_email.split(',')
+        print(sender)
         send_mail(
             "You have a meet request",
             message,
             sender,
-            [admin_email]
+            admin_email
         )
         cust_msg = "we got you request for the meeting. We will connect back to you for further details"
         send_mail(

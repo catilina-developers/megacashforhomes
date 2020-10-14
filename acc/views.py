@@ -124,29 +124,35 @@ def pdf(request):
         citystatezip = ''
         #end address validation
         try:
-            address = address["autocomplete"][0]
-            addr = address["line"]
-            citystatezip = address["city"]+" "+address["state_code"]+" "+address["postal_code"]
+            addr = address["autocomplete"][0]["mpr_id"]
+            # address = address["autocomplete"][0]
+            # addr = address["line"]
+            # citystatezip = address["city"]+" "+address["state_code"]+" "+address["postal_code"]
         except:
             send_not_address(cust_email, admin_email, sender, cust_name, cust_phone, location, price)
             return render(request, "acc/index.html")
 
-        url = "https://zillow-com.p.rapidapi.com/search/address"
+        # url = "https://realtor.p.rapidapi.com/properties/v2/detail"
+        url = "https://realtor.p.rapidapi.com/properties/v2/detail"
+        querystring = {"property_id":addr}
+        # querystring = {"address":addr,"citystatezip":citystatezip}
 
-        querystring = {"address":addr,"citystatezip":citystatezip}
-
-        headers = {
-            'x-rapidapi-host': "zillow-com.p.rapidapi.com",
-            'x-rapidapi-key': "4c93f0d8ecmshd6f225dfbcc7675p1d95cfjsn33f2a1d1b952" #here will be your key
-            }
+    #     headers = {
+    #         "x-rapidapi-host": "zillow6.p.rapidapi.com",
+    # "x-rapidapi-key": "e9faf22191mshe103867cdad6a47p1ee164jsn0d2089f327dc",
+    #         # 'x-rapidapi-host': "zillow-com.p.rapidapi.com",
+    #         # 'x-rapidapi-key': "e9faf22191mshe103867cdad6a47p1ee164jsn0d2089f327dc" #here will be your key
+    #         }
 
         response = rq.request("GET", url, headers=headers, params=querystring)
-
+        #print(response.text);
         data = json.loads(response.text)
-        data = data[0]
+        # data = data[0]
+        data = data["properties"][0]
         zestimate = None
         try:
-            zestimate = "{:,}".format(math.ceil(int(data["zestimate"]["amount"]["value"])*.6))
+            zestimate = "{:,}".format(math.ceil(int(data["price"])*.6))
+            # zestimate = "{:,}".format(math.ceil(int(data["zestimate"]["amount"]["value"])*.6))
             zestimate = "$"+str(zestimate) #+" "+data["zestimate"]["amount"]["currency"]
         except:
             send_not_zestimate(cust_email, admin_email, sender, cust_name, cust_phone, location, price)

@@ -104,7 +104,7 @@ def pdf(request):
         cust_email = request.POST['cust_email']
         img_path = "http://127.0.0.1:8000/static/images/loc.jpg"
         cust_phone = request.POST['phone']
-        admin_email = "agentnate@gmail.com" #"catilinadevelopers@outlook.com" #"agentnate@gmail.com"
+        admin_email = "agentnate@gmail.com, dsifers@gmail.com" #"catilinadevelopers@outlook.com" #"agentnate@gmail.com"
         sender = "Megacashforhomes@gmail.com" #"catilinadevelopers@gmail.com" #"Megacashforhomes@gmail.com"
         
 
@@ -230,7 +230,7 @@ def contact(request):
         email = request.POST['cust_mail']
         subject = request.POST["subject"]
         message = request.POST["message"]
-        admin_email = "agentnate@gmail.com"
+        admin_email = "agentnate@gmail.com, dsifers@gmail.com"
         mail_msg = "You have a query by :"+name+"\nEmail id: "+email+"\nSubject: "+subject+"\nPerson wants to ask following: \n"+message+""
         sender = "Megacashforhomes@gmail.com"
         send_mail(
@@ -251,7 +251,7 @@ def meet(request):
         email = request.POST['cust_email']
         location = request.POST['property_addr']
         message = "Meeting request is Made by " + name + "\nCustomer email address is : " + email + "\nseller's property location:" + location + "\nCustomers Phone number: "+ phone +""
-        admin_email = "agentnate@gmail.com"
+        admin_email = "agentnate@gmail.com, dsifers@gmail.com"
         sender = "Megacashforhomes@gmail.com"
         send_mail(
             "You have a meet request",

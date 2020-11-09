@@ -11,8 +11,24 @@ import json
 from datetime import datetime, timedelta
 import math
 import time
+from num2words import num2words as nw
 
 # Create your views here.
+
+def robot_txt(request):
+    lines = [
+        "User-Agent: *",
+        "Disallow: ",
+    ]
+    return HttpResponse("\n".join(lines), content_type="text/plain")
+
+def visitor_ip_address(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
 
 def send_not_address(user_mail, admin_email, sender, cust_name, cust_phone, location, price):
     cust_msg = "our team will contact you sortly!"
@@ -118,7 +134,7 @@ def pdf(request):
 
         headers = {
             'x-rapidapi-host': "realtor.p.rapidapi.com",
-            'x-rapidapi-key': "4c93f0d8ecmshd6f225dfbcc7675p1d95cfjsn33f2a1d1b952"
+            'x-rapidapi-key': "b7a378bf63msh0c87c5ffcb7c2ddp122fa1jsn242709ad6afc" #"4c93f0d8ecmshd6f225dfbcc7675p1d95cfjsn33f2a1d1b952"
             }
         addr = ''
         citystatezip = ''
@@ -133,11 +149,13 @@ def pdf(request):
         url = "https://realtor.p.rapidapi.com/properties/v2/detail"
         querystring = {"property_id":addr}
         zestimate = None
+        price_spell = None
         try:
             response = rq.request("GET", url, headers=headers, params=querystring)
             data = json.loads(response.text)
             data = data["properties"][0]
             zestimate = "{:,}".format(math.ceil(int(data["price"])*.6))
+            price_spell = nw(math.ceil(int(data["price"])*.6))
             zestimate = "$"+str(zestimate)
         except:
             send_not_zestimate(cust_email, admin_email, sender, cust_name, cust_phone, location, price)
@@ -147,11 +165,13 @@ def pdf(request):
         cust.save()
         context = {"location": location,
                    "cust_name": cust_name,
-                   "cust_emaiol": cust_email,
-                   "price": price,
+                   "cust_email": cust_email,
+                   "price": zestimate,
+                   "price_spell": price_spell,
                    "date": today,
                    "zestimate":zestimate,
-                   "last_date":last_date
+                   "last_date":last_date,
+                   "phone":cust_phone
                    }
         template = get_template(template_path)
         html = template.render(context)
@@ -186,14 +206,26 @@ context = {'t1': t1, 't2': t2, 't3': t3, 't4': t4, 't5': t5}
 
 
 def home(request):
+    ip = visitor_ip_address(request)
+    if len(Users_ip.objects.filter(user_ip=ip)) == 0:
+        user = Users_ip(user_ip=ip)
+        user.save()
     return render(request, 'acc/index.html', context)
 
 
 def about(request):
+    ip = visitor_ip_address(request)
+    if len(Users_ip.objects.filter(user_ip=ip)) == 0:
+        user = Users_ip(user_ip=ip)
+        user.save()
     return render(request, 'acc/about.html', context)
 
 
 def blog(request):
+    ip = visitor_ip_address(request)
+    if len(Users_ip.objects.filter(user_ip=ip)) == 0:
+        user = Users_ip(user_ip=ip)
+        user.save()
     bg1 = Blog.objects.get(id=1)
     bg2 = Blog.objects.get(id=2)
     bg3 = Blog.objects.get(id=3)
@@ -205,6 +237,10 @@ def blog(request):
 
 
 def contact(request):
+    ip = visitor_ip_address(request)
+    if len(Users_ip.objects.filter(user_ip=ip)) == 0:
+        user = Users_ip(user_ip=ip)
+        user.save()
     if request.method == 'POST':
         name = request.POST["cust_name"]
         email = request.POST['cust_mail']
@@ -226,6 +262,10 @@ def contact(request):
 
 
 def meet(request):
+    ip = visitor_ip_address(request)
+    if len(Users_ip.objects.filter(user_ip=ip)) == 0:
+        user = Users_ip(user_ip=ip)
+        user.save()
     if request.method == 'POST':
         phone = request.POST['phone']
         name = request.POST["cust_name"]
@@ -257,10 +297,18 @@ def meet(request):
 
 
 def sell(request):
+    ip = visitor_ip_address(request)
+    if len(Users_ip.objects.filter(user_ip=ip)) == 0:
+        user = Users_ip(user_ip=ip)
+        user.save()
     return render(request, 'acc/sell.html')
 
 
 def blogs(request, pk_test):
+    ip = visitor_ip_address(request)
+    if len(Users_ip.objects.filter(user_ip=ip)) == 0:
+        user = Users_ip(user_ip=ip)
+        user.save()
     blogs = Blog.objects.get(id=pk_test)
     context = {'blog': blogs}
     return render(request, 'acc/blogs.html', context)

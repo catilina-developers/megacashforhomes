@@ -1,0 +1,152 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  {% include 'acc/head-section.html' %}
+  <body>
+
+	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	      <h4 class="" href="/" style="color:#000;">Mega Cash for Homes</h4>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+	          <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+	          <li class="nav-item"><a href="/about/" class="nav-link">About</a></li>
+	          <li class="nav-item"><a href="/sell/" class="nav-link">Sell Now</a></li>
+	          <li class="nav-item active"><a href="/meet/" class="nav-link">Meet Us</a></li>
+	          <li class="nav-item"><a href="/blog/" class="nav-link">Blog</a></li>
+	          <li class="nav-item"><a href="/contact/" class="nav-link">Contact Us</a></li>
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+    <!-- END nav -->
+
+    <section class="hero-wrap hero-wrap-2 ftco-degree-bg js-fullheight" title="Mega Cash For Homes Meet Now section"  style="background-image: url('{% static 'images/mega-cash-for-homes-cover-image.jpg' %}');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate pb-5 text-center">
+          	<p class="breadcrumbs"><span class="mr-2"><a href="/">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Arrange Meet <i class="ion-ios-arrow-forward"></i></span></p>
+            <h1 class="mb-3 bread">Get<br>What you deserve</h1>
+          </div>
+        </div>
+      </div>
+      <div class="mouse">
+				<a href="#offer-block" class="mouse-icon">
+					<div class="mouse-wheel"><span class="ion-ios-arrow-round-down"></span></div>
+				</a>
+			</div>
+    </section>
+
+		<section class="ftco-section">
+      <div class="container">
+      	<div class="row justify-content-center">
+          <div class="col-md-12 heading-section text-center ftco-animate mb-5">
+          	<span class="subheading">Tell Us Some Details</span>
+            <h2 class="mb-2">Tell us some details<br>we will be at your door steps as soon as possible</h2>
+          </div>
+        </div>
+        <div class="row block-9 justify-content-center mb-5">
+          <div class="col-md-8 mb-md-5">
+            <form onsubmit="alertFun();" action="/meet/" class="bg-light p-5 contact-form " method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                  <input name="cust_name" type="text" class="form-control" placeholder="Your Name *" required>
+                </div>
+                <div class="form-group">
+                  <input name="cust_email" type="Email" class="form-control" placeholder="Your Email *">
+                </div>
+                <div class="form-group ">
+                  <input name="property_addr" type="text" id="prop_loc" class="form-control" placeholder="Property location *" required>
+                </div>
+                <div class="form-group ">
+                  <input id="phone_no" name="phone" type="text" class="form-control" placeholder="Phone number" required>
+                </div>
+                <div class="form-group ">
+                  <input type="submit" value="Arrange Meeting" class="btn btn-primary py-3 px-5">
+                </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {% include 'acc/footer-section.html' %}
+
+
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+    <script>
+      function alertFun()
+      {
+        swal("Thank you for showing interest!", "Some one from our team will contact you soon!", "success");
+      }
+    </script>
+        <!-- drop down related javascript code -->
+    <script>
+    $("#prop_loc").autocomplete({
+      source: function(req, res){
+        const settings = {
+          "async": true,
+          "crossDomain": true,
+          "url": "https://realtor.p.rapidapi.com/locations/auto-complete",
+          "method": "GET",
+          "data":{
+            "input":$("#prop_loc").val()
+          },
+          "headers": {
+            "x-rapidapi-host": "realtor.p.rapidapi.com",
+            "x-rapidapi-key": "b7a378bf63msh0c87c5ffcb7c2ddp122fa1jsn242709ad6afc"
+          },
+          beforeSend:()=>{
+            $(".fa-spin").remove();
+            let tag = '<i class="fa fa-circle-o-notch fa-spin"></i>'
+            $("#prop_loc").after(tag);
+            $(".fa-spin").css({
+              "display": "inline-block"
+            })
+          },
+          success: (response)=>{
+            let data = response["autocomplete"];
+            let array = new Array();
+            for(let i = 0; i<data.length; i++){
+              if(data[i]["line"] != undefined && data[i]["city"] !=undefined && data[i]["state_code"] != undefined && data[i]["postal_code"] != undefined){
+                let tag = data[i]["line"]+", "+data[i]["city"]+", "+data[i]["state_code"]+" "+data[i]["postal_code"]; 
+                array.push(tag);
+              }
+            }
+            res(array)
+            $(".fa-spin").remove();
+          }
+        }
+        $.ajax(settings);
+      },
+      minLength: 5,
+      select: function( event, ui ) {
+        $("#prop_loc").val(ui.item.value);
+        return false;
+      }
+    
+    })
+
+
+      
+    </script>
+    <!-- end code -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  {% include 'acc/script-section.html' %}
+
+  <script type="text/javascript">
+        $("#phone_no").usPhoneFormat({
+      format: '(xxx) xxx-xxxx'
+    });
+  </script>
+
+  </body>
+</html>

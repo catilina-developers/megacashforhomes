@@ -5,6 +5,3 @@ from .models import *
 admin.site.register(Blog)
 admin.site.register(Testimonial)
 admin.site.register(Customer)
-admin.site.register(Users_ip)
-
-

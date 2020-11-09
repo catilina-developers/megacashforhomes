@@ -6,7 +6,7 @@
 
 	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="/">Mega Cash for Homes</a>
+	      <h4 class="" href="/" style="color:#000;">Mega Cash for Homes</h4>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
@@ -18,14 +18,14 @@
 	          <li class="nav-item active"><a href="/sell/" class="nav-link">Sell Now</a></li>
 	          <li class="nav-item"><a href="/meet/" class="nav-link">Meet Us</a></li>
 	          <li class="nav-item"><a href="/blog/" class="nav-link">Blog</a></li>
-	          <li class="nav-item"><a href="/contact/" class="nav-link">Contact</a></li>
+	          <li class="nav-item"><a href="/contact/" class="nav-link">Contact Us</a></li>
 	        </ul>
 	      </div>
 	    </div>
 	  </nav>
     <!-- END nav -->
 
-    <section class="hero-wrap hero-wrap-2 ftco-degree-bg js-fullheight" style="background-image: url('{% static 'images/bgg.jpg' %}');" data-stellar-background-ratio="0.5">
+    <section class="hero-wrap hero-wrap-2 ftco-degree-bg js-fullheight" title="Mega Cash For Homes Sell page"  style="background-image: url('{% static 'images/mega-cash-for-homes-cover-image.jpg' %}');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
@@ -102,6 +102,7 @@
 
 
 
+
     <!-- drop down related javascript code -->
     <script>
     $("#search-prop").autocomplete({
@@ -116,7 +117,7 @@
           },
           "headers": {
             "x-rapidapi-host": "realtor.p.rapidapi.com",
-            "x-rapidapi-key": "4c93f0d8ecmshd6f225dfbcc7675p1d95cfjsn33f2a1d1b952"
+            "x-rapidapi-key": "b7a378bf63msh0c87c5ffcb7c2ddp122fa1jsn242709ad6afc"
           },
           beforeSend:()=>{
             $(".fa-spin").remove();
@@ -160,14 +161,6 @@
       format: '(xxx) xxx-xxxx'
     });
   </script>
-
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  {% if address_not_found %}
-  	<script>
-  		 swal("Get cash offer in minutes!", "Our team will contact you soon!", "success");
-  	</script>
-  {% endif %}
-
   
   </body>
 </html>

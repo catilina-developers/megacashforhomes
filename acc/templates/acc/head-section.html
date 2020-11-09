@@ -1,9 +1,20 @@
+
 {% load static %}
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-180550309-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-180550309-1');
+    </script>
     <title>Mega Cash for Homes</title>
+    <meta name="description" content="Mega Cash For Homes simplest way to sell property without BROKERAGE COMMISSIONS, CLOSING COST, & any kind of FEES. Get Purchase agreement INSTANTLY.">
+    <meta name="keywords" content="repair home, house repair, houses for sale, homes for sale ,this old house, property for sale, ugly house, buy homes, divorce assets, full renovation house, terrible houses, bad house, damaged houses, for sale wrecked house, bad home, fix up houses, for sale houses in need of repair for sale, bad property, house for sale no credit check, old houses for sale, damaged house for sale near me, damaged homes for sale near me, bad house pictures, broken houses for sale, broken down houses for sale, fire damaged properties, fire damaged homes for sale, fire damaged house, selling fire damaged property, fire damaged homes, damaged property for sale, divorce house, ruined house, terrible houses">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}" />
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900&display=swap" rel="stylesheet">
 
    <!--  new code related to drop down -->
@@ -11,10 +22,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <!-- end code -->
 
-
+    {% load compress %}
+    {% compress css %}
     <link rel="stylesheet" href="{% static 'css/open-iconic-bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/animate.css' %}">
 
@@ -26,12 +37,13 @@
 
     <link rel="stylesheet" href="{% static 'css/ionicons.min.css' %}">
 
-    <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
-    <link rel="stylesheet" href="{% static 'css/jquery.timepicker.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery.timepicker.css' %}"> -->
 
 
     <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
     <link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% endcompress %}
     <link rel="icon" type="image/png" href="{% static 'images/icon.png' %}">
   </head>

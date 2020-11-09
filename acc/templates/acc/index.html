@@ -4,10 +4,9 @@
 <html lang="en">
   {% include 'acc/head-section.html' %}
   <body>
-
 	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="/">Mega Cash for Homes</a>
+	      <h4 class="" href="/" style="color:#000;">Mega Cash for Homes</h4>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
@@ -19,14 +18,14 @@
 	          <li class="nav-item"><a href="/sell/" class="nav-link">Sell Now</a></li>
 	          <li class="nav-item"><a href="/meet/" class="nav-link">Meet Us</a></li>
 	          <li class="nav-item"><a href="/blog/" class="nav-link">Blog</a></li>
-	          <li class="nav-item"><a href="/contact/" class="nav-link">Contact</a></li>
+	          <li class="nav-item"><a href="/contact/" class="nav-link">Contact Us</a></li>
 	        </ul>
 	      </div>
 	    </div>
 	  </nav>
     
 
-    <div class="hero-wrap ftco-degree-bg" style="background-image: url('{% static 'images/bgg.jpg' %}');" data-stellar-background-ratio="0.5">
+    <div class="hero-wrap ftco-degree-bg" title="Mega Cash For Homes Home Page"  style="background-image: url('{% static 'images/mega-cash-for-homes-cover-image.jpg' %}');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text justify-content-center align-items-center">
@@ -51,6 +50,10 @@
 			</div>
     </div>
 
+  
+
+  	
+  
     
 
     
@@ -66,5 +69,13 @@
 
   
   {% include 'acc/script-section.html' %}
+
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  {% if address_not_found %}
+  	<script>
+  		 swal("Oops Address is not valid \nThank you for showing interest!", "Some one from our team will contact you soon!", "success");
+  	</script>
+  {% endif %}
+
   </body>
 </html>

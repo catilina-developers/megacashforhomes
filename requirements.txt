@@ -38,3 +38,4 @@ whitenoise==5.1.0
 wrapt==1.12.1
 xhtml2pdf==0.2.4
 requests==2.24.0
+django-compressor == 2.4.0

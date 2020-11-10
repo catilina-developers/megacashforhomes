@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils import timezone
+
 
 # Create your models here.
 class Blog(models.Model):
@@ -33,8 +33,3 @@ class Customer(models.Model):
 
     def __str__(self):
         return self.name
-
-class Users_ip(models.Model):
-    user_ip = models.CharField(max_length=30, null=True)
-    visit_time = models.DateTimeField(default=timezone.now)
-    

@@ -27,5 +27,6 @@ urlpatterns = [
     url(r'^meet/$', views.meet),
     url(r'^sell/$', views.sell),
     url(r'^pdf/$', views.pdf),
-    path('blogs/<str:pk_test>/', views.blogs)
+    path('blogs/<str:pk_test>/', views.blogs),
+    url(r'^robots.txt$', views.robot_txt)
 ]

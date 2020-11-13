@@ -19,8 +19,12 @@ def robot_txt(request):
     lines = [
         "User-Agent: *",
         "Disallow: ",
+       "Sitemap: https://www.megacashforhomes.com/sitemap.xml"
     ]
     return HttpResponse("\n".join(lines), content_type="text/plain")
+def xml(request):
+    return HttpResponse(open('sitemap.xml').read(), content_type='text/xml')
+
 
 def visitor_ip_address(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')

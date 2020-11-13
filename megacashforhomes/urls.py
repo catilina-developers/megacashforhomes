@@ -28,5 +28,6 @@ urlpatterns = [
     url(r'^sell/$', views.sell),
     url(r'^pdf/$', views.pdf),
     path('blogs/<str:pk_test>/', views.blogs),
-    url(r'^robots.txt$', views.robot_txt)
+    url(r'^robots.txt$', views.robot_txt),
+    url(r'^sitemap.xml$', views.xml)
 ]

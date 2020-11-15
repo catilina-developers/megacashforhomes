@@ -25,7 +25,7 @@ urlpatterns = [
     url(r'^blog/$', views.blog),
     url(r'^contact/$', views.contact),
     url(r'^meet/$', views.meet),
-    url(r'^sell/$', views.sell),
+    url(r'^get-a-cash-offer-today/$', views.sell),
     url(r'^pdf/$', views.pdf),
     path('blogs/<str:pk_test>/', views.blogs),
     url(r'^robots.txt$', views.robot_txt),

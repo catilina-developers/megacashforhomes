@@ -26,8 +26,7 @@ SECRET_KEY = '8omho1cv1^zdlx8$*v5hn3))(ub(l4bm!rw_n3wzhps@!#8sj#'
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['megacashforhomes.herokuapp.com', '127.0.0.1', 'megacashforhomes.com', 'megacash4homes.com','www.megacashforhomes.com', 'https://megacashforhomes.com/']
-
+ALLOWED_HOSTS = ['megacashforhomes.herokuapp.com', '127.0.0.1', 'megacashforhomes.com', 'megacash4homes.com','www.megacashforhomes.com']
 
 # Application definition
 
@@ -39,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'acc',
-    "compressor"
+    "compressor",
+    'django.contrib.sitemaps',
 ]
 
 MIDDLEWARE = [
@@ -125,9 +125,12 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/images/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images/')
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST_USER = "Megacashforhomes@gmail.com"

@@ -12,7 +12,7 @@ from datetime import datetime, timedelta
 import math
 import time
 from num2words import num2words as nw
-
+from django.views.generic import ListView, DetailView
 # Create your views here.
 
 def robot_txt(request):
@@ -210,41 +210,16 @@ context = {'t1': t1, 't2': t2, 't3': t3, 't4': t4, 't5': t5}
 
 
 def home(request):
-    ip = visitor_ip_address(request)
-    if len(Users_ip.objects.filter(user_ip=ip)) == 0:
-        user = Users_ip(user_ip=ip)
-        user.save()
     return render(request, 'acc/index.html', context)
 
 
 def about(request):
-    ip = visitor_ip_address(request)
-    if len(Users_ip.objects.filter(user_ip=ip)) == 0:
-        user = Users_ip(user_ip=ip)
-        user.save()
     return render(request, 'acc/about.html', context)
 
 
-def blog(request):
-    ip = visitor_ip_address(request)
-    if len(Users_ip.objects.filter(user_ip=ip)) == 0:
-        user = Users_ip(user_ip=ip)
-        user.save()
-    bg1 = Blog.objects.get(id=1)
-    bg2 = Blog.objects.get(id=2)
-    bg3 = Blog.objects.get(id=3)
-    bg4 = Blog.objects.get(id=4)
-    bg5 = Blog.objects.get(id=5)
-    bg6 = Blog.objects.get(id=6)
-    context = {'bg1': bg1, 'bg2': bg2, 'bg3': bg3, 'bg4': bg4, 'bg5': bg5, 'bg6': bg6}
-    return render(request, 'acc/blog.html', context)
 
 
 def contact(request):
-    ip = visitor_ip_address(request)
-    if len(Users_ip.objects.filter(user_ip=ip)) == 0:
-        user = Users_ip(user_ip=ip)
-        user.save()
     if request.method == 'POST':
         name = request.POST["cust_name"]
         email = request.POST['cust_mail']
@@ -266,10 +241,6 @@ def contact(request):
 
 
 def meet(request):
-    ip = visitor_ip_address(request)
-    if len(Users_ip.objects.filter(user_ip=ip)) == 0:
-        user = Users_ip(user_ip=ip)
-        user.save()
     if request.method == 'POST':
         phone = request.POST['phone']
         name = request.POST["cust_name"]
@@ -301,18 +272,19 @@ def meet(request):
 
 
 def sell(request):
-    ip = visitor_ip_address(request)
-    if len(Users_ip.objects.filter(user_ip=ip)) == 0:
-        user = Users_ip(user_ip=ip)
-        user.save()
     return render(request, 'acc/sell.html')
 
 
-def blogs(request, pk_test):
-    ip = visitor_ip_address(request)
-    if len(Users_ip.objects.filter(user_ip=ip)) == 0:
-        user = Users_ip(user_ip=ip)
-        user.save()
-    blogs = Blog.objects.get(id=pk_test)
-    context = {'blog': blogs}
-    return render(request, 'acc/blogs.html', context)
+class Blog_page(ListView):
+    model = Post
+    template_name = 'acc/blog.html'
+    ordering = ['-post_date']
+
+class Blog_details(DetailView):
+    model = Post
+    template_name = 'acc/blog_details.html'
+
+
+
+def error_404_view(request, exception):
+    return render(request, 'acc/404.html')

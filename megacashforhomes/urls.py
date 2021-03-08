@@ -17,17 +17,28 @@ from django.conf.urls import url
 from django.contrib import admin
 from acc import views
 from django.urls import path
+from acc.views import Blog_page, Blog_details
+from django.conf import settings
+from django.conf.urls.static import static
+from acc.sitemaps import PostSitemap
+from django.contrib.sitemaps.views import sitemap
 
+sitemaps = {
+    'posts': PostSitemap
+}
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.home),
     url(r'^about/$', views.about),
-    url(r'^blog/$', views.blog),
     url(r'^contact/$', views.contact),
     url(r'^meet/$', views.meet),
-    url(r'^get-a-cash-offer-today/$', views.sell),
+    url(r'^sell/$', views.sell),
     url(r'^pdf/$', views.pdf),
-    path('blogs/<str:pk_test>/', views.blogs),
-    url(r'^robots.txt$', views.robot_txt),
-    url(r'^sitemap.xml$', views.xml)
+    path('blog/', Blog_page.as_view(), name="blog"),
+    path('article/<int:pk>', Blog_details.as_view(), name="article"),
+    path('sitemap.xml/', sitemap, {"sitemaps": sitemaps}, name="sitemap")
+
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = 'acc.views.error_404_view'

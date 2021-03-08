@@ -1,18 +1,10 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
+from datetime import datetime, date
+
 
 # Create your models here.
-class Blog(models.Model):
-    heading_1 = models.TextField(null=True)
-    heading_2 = models.TextField(null=True)
-    content_1 = models.TextField(null=True)
-    content_2 = models.TextField(null=True)
-    content_3 = models.TextField(null=True)
-    content_4 = models.TextField(null=True)
-    id = models.CharField(primary_key=True, max_length=100)
-
-    def __str__(self):
-        return self.heading_1
 
 
 class Testimonial(models.Model):
@@ -34,7 +26,18 @@ class Customer(models.Model):
     def __str__(self):
         return self.name
 
-class Users_ip(models.Model):
-    user_ip = models.CharField(max_length=30, null=True)
-    visit_time = models.DateTimeField(default=timezone.now)
-    
+
+class Post(models.Model):
+    title = models.CharField(max_length=255)
+    title_2 = models.CharField(max_length=255)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    body_1 = models.TextField(default="")
+    body_2 = models.TextField(default="")
+    body_3 = models.TextField(default="")
+    body_4 = models.TextField(default="")
+    post_date = models.DateField(auto_now_add=True)
+    image = models.ImageField(null=True, blank=True)
+    present = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.title + ' | ' + str(self.author)

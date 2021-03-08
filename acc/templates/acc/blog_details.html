@@ -1,9 +1,9 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  {% include 'acc/head-section.html' %}
+  {% include "acc/head-section.html" %}
   <body>
-
+    
 	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="/">Mega Cash for Homes</a>
@@ -15,8 +15,8 @@
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
 	          <li class="nav-item"><a href="/about/" class="nav-link">About</a></li>
-	          <li class="nav-item"><a href="/sell/" class="nav-link">Sell Now</a></li>
-	          <li class="nav-item"><a href="/meet/" class="nav-link">Meet Us</a></li>
+	          <li class="nav-item"><a href="/sell/" class="nav-link">Services</a></li>
+	          <li class="nav-item"><a href="/meet/" class="nav-link">Properties</a></li>
 	          <li class="nav-item active"><a href="/blog/" class="nav-link">Blog</a></li>
 	          <li class="nav-item"><a href="/contact/" class="nav-link">Contact</a></li>
 	        </ul>
@@ -24,61 +24,60 @@
 	    </div>
 	  </nav>
     <!-- END nav -->
-
-    <section class="hero-wrap hero-wrap-2 ftco-degree-bg js-fullheight" style="background-image: url('{% static 'images/bgg.jpg' %}');" data-stellar-background-ratio="0.5">
+    
+    <section class="hero-wrap hero-wrap-2 ftco-degree-bg js-fullheight" style="background-image: url('{% static 'images/bggg.jpg' %}');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate pb-5 text-center">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="/">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>{{blogid}} <i class="ion-ios-arrow-forward"></i></span></p>
+          	<p class="breadcrumbs"><span class="mr-2"><a href="/">Home <i class="ion-ios-arrow-forward"></i></a></span> <span class="mr-2"><a href="/blog/">Blog <i class="ion-ios-arrow-forward"></i></a></span> <span>Blogs <i class="ion-ios-arrow-forward"></i></span></p>
             <h1 class="mb-3 bread">Our Blog</h1>
           </div>
         </div>
       </div>
-      <div class="mouse">
-				<a href="#offer-block" class="mouse-icon">
-					<div class="mouse-wheel"><span class="ion-ios-arrow-round-down"></span></div>
-				</a>
-			</div>
     </section>
 
-		<section class="ftco-section">
+		<section class="ftco-section ftco-degree-bg">
       <div class="container">
-        <div class="row d-flex">
-
-
-          {% for post in object_list %}
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-              <div class="text">
-                <h3 class="heading"><a href="{% url 'article' post.pk %}">{{post.title}}<br></a></h3>
-                <div class="meta mb-3 " ">
-                  <div><a href="{% url 'article' post.pk %}">{{post.author}}<span> </span><span class="icon-chat"> </span> {{post.post_date}}</a></div>
-
-                </div>
-                <a href="/blogs/1/" class="block-20 img" style="background-image: url('{{post.image.url}}');">
-	              </a>
-                <p>{{post.title_2}}</p>
-              </div>
+        <div class="row">
+          <div class="col-md-12 order-md-last ftco-animate">
+            <h2 class="mb-3">{{post.title}}</h2>
+            <p>{{post.body_1|safe}}</p>
+            <p>
+              <img src="{% static 'images/image_7.jpg' %}" alt="" class="img-fluid">
+            </p>
+            <p>{{post.body_2|safe}}</p>
+            <h2 class="mb-3 mt-5">{{post.title_2}}</h2>
+            <p>{{post.body_3|safe}}</p>
+            <p>
+              <img src="{% static 'images/image_8.jpg' %}" alt="" class="img-fluid">
+            </p>
+            <p>{{post.body_4|safe}}</p>
+            <div class="tag-widget post-tag-container mb-5 mt-5">
+              
             </div>
-          </div>
-            {% endfor %}
+            
 
 
-          </div>
-        
+
+            
+
+          </div> <!-- .col-md-8 -->
+          
+
+        </div>
       </div>
-    </section>
+    </section> <!-- .section -->
 
-    {% include 'acc/footer-section.html' %}
-
-
+    {% include "acc/footer-section.html" %}
+    
+  
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 
-  {% include 'acc/script-section.html' %}
-
+  {% include "acc/script-section.html" %}
+    
   </body>
 </html>

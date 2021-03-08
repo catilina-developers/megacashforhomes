@@ -56,7 +56,7 @@
                   <div><a href="{% url 'article' post.pk %}">{{post.author}}<span> </span><span class="icon-chat"> </span> {{post.post_date}}</a></div>
 
                 </div>
-                <a href="/blogs/1/" class="block-20 img" style="background-image: url('{{post.image.url}}');">
+                <a href="{% url 'article' post.pk %}" class="block-20 img" style="background-image: url('{% static "images/image_1.jpg" %}');">
 	              </a>
                 <p>{{post.title_2}}</p>
               </div>

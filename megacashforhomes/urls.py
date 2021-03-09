@@ -16,27 +16,30 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from acc import views
-from django.urls import path
+from django.urls import path , include
 from acc.views import Blog_page, Blog_details
 from django.conf import settings
 from django.conf.urls.static import static
-from acc.sitemaps import PostSitemap
+from acc.sitemaps import StaticViewSitemap, PostSitemap
 from django.contrib.sitemaps.views import sitemap
 
 sitemaps = {
-    'posts': PostSitemap
+    'static': StaticViewSitemap,
+    'post': PostSitemap
+
 }
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.home),
-    url(r'^about/$', views.about),
-    url(r'^contact/$', views.contact),
-    url(r'^meet/$', views.meet),
-    url(r'^sell/$', views.sell),
+    url(r'^about/$', views.about, name="about"),
+    url(r'^contact/$', views.contact, name="contact"),
+    url(r'^meet/$', views.meet, name="meet"),
+    url(r'^sell/$', views.sell, name="sell"),
     url(r'^pdf/$', views.pdf),
     path('blog/', Blog_page.as_view(), name="blog"),
     path('article/<int:pk>', Blog_details.as_view(), name="article"),
-    path('sitemap.xml/', sitemap, {"sitemaps": sitemaps}, name="sitemap")
+    path('sitemap.xml/', sitemap, {"sitemaps": sitemaps}, name="sitemap"),
+    url(r'^robots\.txt', include('robots.urls'))
 
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

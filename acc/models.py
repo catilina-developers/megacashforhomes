@@ -37,7 +37,9 @@ class Post(models.Model):
     body_4 = models.TextField(default="")
     post_date = models.DateField(auto_now_add=True)
     image = models.ImageField(null=True, blank=True)
-    present = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title + ' | ' + str(self.author)
+
+    def get_absolute_url(self):
+        return f'/{self.title}/'

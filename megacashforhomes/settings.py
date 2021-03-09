@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '8omho1cv1^zdlx8$*v5hn3))(ub(l4bm!rw_n3wzhps@!#8sj#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 
 ALLOWED_HOSTS = ['megacashforhomes.herokuapp.com', '127.0.0.1', 'megacashforhomes.com', 'megacash4homes.com','www.megacashforhomes.com']
@@ -37,9 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'acc',
     "compressor",
     'django.contrib.sitemaps',
+    'robots'
 ]
 
 MIDDLEWARE = [
@@ -138,4 +140,4 @@ EMAIL_HOST_PASSWORD = "megamegacashcash1234"
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-
+SITE_ID = 1

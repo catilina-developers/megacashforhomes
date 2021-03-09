@@ -36,7 +36,7 @@ class Post(models.Model):
     body_3 = models.TextField(default="")
     body_4 = models.TextField(default="")
     post_date = models.DateField(auto_now_add=True)
-    image = models.ImageField(null=True, blank=True)
+    image = models.ImageField(null=False, blank=True, upload_to='images/')
 
     def __str__(self):
         return self.title + ' | ' + str(self.author)

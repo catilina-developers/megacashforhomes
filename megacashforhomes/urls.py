@@ -29,17 +29,17 @@ sitemaps = {
 
 }
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^$', views.home),
-    url(r'^about/$', views.about, name="about"),
-    url(r'^contact/$', views.contact, name="contact"),
-    url(r'^meet/$', views.meet, name="meet"),
-    url(r'^sell/$', views.sell, name="sell"),
-    url(r'^pdf/$', views.pdf),
-    path('blog/', Blog_page.as_view(), name="blog"),
-    path('article/<int:pk>', Blog_details.as_view(), name="article"),
-    path('sitemap.xml/', sitemap, {"sitemaps": sitemaps}, name="sitemap"),
-    url(r'^robots\.txt', include('robots.urls'))
+#     url(r'^admin/', admin.site.urls),
+#     url(r'^$', views.home),
+#     url(r'^about/$', views.about, name="about"),
+#     url(r'^contact/$', views.contact, name="contact"),
+#     url(r'^meet/$', views.meet, name="meet"),
+#     url(r'^sell/$', views.sell, name="sell"),
+#     url(r'^pdf/$', views.pdf),
+#     path('blog/', Blog_page.as_view(), name="blog"),
+#     path('article/<int:pk>', Blog_details.as_view(), name="article"),
+#     path('sitemap.xml/', sitemap, {"sitemaps": sitemaps}, name="sitemap"),
+#     url(r'^robots\.txt', include('robots.urls'))
 
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
